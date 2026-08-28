@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI活用術ガイド Vol.2 | 業務効率化と成果創出</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Noto Sans JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#2563EB',
+                            blueLight: '#EFF6FF',
+                            blueHover: '#1D4ED8',
+                            dark: '#0F172A',
+                            grayBg: '#F8FAFC',
+                            cardBorder: '#E2E8F0'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        mono: ['Consolas', 'Monaco', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/css">
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F8FAFC;
+            color: #1E2229;
+            word-wrap: break-word;
+        }
+
+        /* 印刷用スタイル */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            body {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+            }
+            .print-card {
+                break-inside: avoid;
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+            }
+            .hero-bg {
+                background: #0F172A !important;
+                color: #ffffff !important;
+            }
+        }
+
+        /* プロンプトコードブロックのカスタマイズ */
+        .prompt-block {
+            background-color: #1E293B;
+            color: #E2E8F0;
+            font-family: Consolas, Monaco, monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body class="antialiased leading-relaxed">
+
+    <!-- Sticky Navigation (Print Hidden) -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200 shadow-sm no-print">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-2">
+                    <span class="bg-brand-blue text-white text-xs font-bold px-2.5 py-1 rounded">BEST ACTION</span>
+                    <span class="text-sm font-bold text-gray-700 hidden sm:inline">AI活用ガイド Vol.2</span>
+                </div>
+                <div class="flex space-x-2 sm:space-x-6 text-xs sm:text-sm font-medium overflow-x-auto whitespace-nowrap">
+                    <a href="#section1" class="text-gray-600 hover:text-brand-blue py-2 border-b-2 border-transparent hover:border-brand-blue transition-colors">1. メール作成効率化</a>
+                    <a href="#section2" class="text-gray-600 hover:text-brand-blue py-2 border-b-2 border-transparent hover:border-brand-blue transition-colors">2. 対策資料Web公開</a>
+                    <a href="#section3" class="text-gray-600 hover:text-brand-blue py-2 border-b-2 border-transparent hover:border-brand-blue transition-colors">3. 資料生成プロンプト</a>
+                    <a href="#section4" class="text-gray-600 hover:text-brand-blue py-2 border-b-2 border-transparent hover:border-brand-blue transition-colors">4. 申し送り自動生成</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO HEADER -->
+    <header class="hero-bg bg-gradient-to-br from-brand-dark via-slate-800 to-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#2563EB_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-5xl mx-auto relative z-10">
+            <div class="inline-flex items-center space-x-2 bg-brand-blue/20 border border-brand-blue/40 text-blue-300 text-xs font-bold px-3 py-1.5 rounded-full mb-6">
+                <span>Sales Productivity Boost</span>
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight mb-4">
+                AI (Gemini) 活用ガイド<br>
+                <span class="text-blue-400">業務効率化と成果創出の実践テクニック</span>
+            </h1>
+            <p class="text-gray-300 text-base sm:text-lg max-w-3xl leading-relaxed">
+                「難しそう」と思われがちですが、実は「メール1本」から「選考対策」まで、AIを活用することで劇的に生産性を高めることが可能です。現場ですぐに真似して使える、特に効果の高かった4つの活用事例を完全網羅しました。
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+
+        <!-- SECTION 1: メール作成効率化 -->
+        <section id="section1" class="scroll-mt-20">
+            <div class="border-l-4 border-brand-blue pl-4 mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold text-brand-dark">SECTION 1: 【時短】メール作成・文章サポートの自動化</h2>
+                <p class="text-gray-500 text-sm mt-1">宛先や署名の修正手間をゼロにする、拡張機能とテンプレートの合わせ技</p>
+            </div>
+
+            <div class="bg-white p-6 sm:p-8 rounded-xl border border-brand-cardBorder shadow-sm print-card">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- 左カラム：手順 -->
+                    <div>
+                        <h3 class="text-lg font-bold text-brand-dark mb-4 pb-2 border-b">セットアップ手順</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <span class="bg-brand-blue text-white font-bold rounded-full w-6 h-6 flex items-center justify-center text-xs mr-3 shrink-0">1</span>
+                                <div>
+                                    <h4 class="font-bold text-sm text-gray-800">Briskineの導入</h4>
+                                    <p class="text-xs text-gray-600 mt-1">短いキーワードを入力してTabキーを押すだけで、登録した定型文を一瞬で呼び出せるブラウザ拡張機能「Briskine」をインストールします。</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="bg-brand-blue text-white font-bold rounded-full w-6 h-6 flex items-center justify-center text-xs mr-3 shrink-0">2</span>
+                                <div>
+                                    <h4 class="font-bold text-sm text-gray-800">テンプレートの登録</h4>
+                                    <p class="text-xs text-gray-600 mt-1">右記のテンプレートをご自身の名前や連絡先に変更し、Briskineに登録します。</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="bg-brand-blue text-white font-bold rounded-full w-6 h-6 flex items-center justify-center text-xs mr-3 shrink-0">3</span>
+                                <div>
+                                    <h4 class="font-bold text-sm text-gray-800">ワンタッチ実行</h4>
+                                    <p class="text-xs text-gray-600 mt-1">文章作成サポートに登録したテンプレートを挿入し、【回答内容】に要件を一言だけ書くだけで、完璧なメールが生成されます。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右カラム：プロンプト -->
+                    <div>
+                        <h3 class="text-lg font-bold text-brand-dark mb-4 pb-2 border-b">登録用テンプレート（コピーして使用）</h3>
+                        <div class="prompt-block">【役割】人材紹介RA(ご自身の名前)
+【宛先】【企業名・担当者名]
+※例:株式会社キャリアデザインセンター 奥井様
+
+【回答内容】 【ここに要件を一言だけ書く!】
+※相手の言葉の要約や前置き(オウム返し)は控えてください。
+※「お世話になっております。type転職エージェントの〇〇です。」から始めて、結論ファースト・箇条書きを活用し、最後に連絡先を付けてメール作成してください。</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2 & 3: 面接対策資料のWeb公開とプロンプト化 -->
+        <section id="section2" class="scroll-mt-20">
+            <div class="border-l-4 border-brand-blue pl-4 mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold text-brand-dark">SECTION 2 & 3: 対策資料のWeb公開＆作成ナレッジ</h2>
+                <p class="text-gray-500 text-sm mt-1">候補者へURLを送るだけで完結するWeb資料の作成と、全員が10分で作れる仕組み</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                <!-- 実例紹介 -->
+                <div class="bg-white p-6 rounded-xl border border-brand-cardBorder shadow-sm print-card">
+                    <div class="text-xs font-bold text-brand-blue uppercase tracking-wider mb-1">OUTPUT SAMPLE</div>
+                    <div class="text-xl font-black text-brand-dark mb-2">対策資料のWeb公開版</div>
+                    <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                        資料をPDF等ではなくWebで公開することで、URLを送るだけで企業の対策資料の送付が可能になります。<br>
+                        <span class="text-red-500 font-bold">※</span>URL公開（Github等）の手順は別途ご相談ください。
+                    </p>
+                    <a href="https://okui131213.github.io/akkodis-prep-guide-Public/" target="_blank" class="inline-flex items-center text-sm font-bold text-brand-blue hover:text-brand-blueHover">
+                        ▶ 実際に作成した対策資料を見る <span class="ml-1">→</span>
+                    </a>
+                </div>
+
+                <!-- プロンプト共有 -->
+                <div class="bg-white p-6 rounded-xl border border-brand-cardBorder shadow-sm print-card">
+                    <div class="text-xs font-bold text-brand-blue uppercase tracking-wider mb-1">PROMPT KNOWLEDGE</div>
+                    <div class="text-xl font-black text-brand-dark mb-2">資料作成プロンプト（真似るだけ）</div>
+                    <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                        上記のようなWebページを、全員が10分かからず作成できるようにプロンプト化しました。内容に違和感がある場合はGeminiとラリーを続けてカスタマイズ可能です。
+                    </p>
+                    <div class="space-y-2">
+                        <a href="https://okui131213.github.io/gem_howto/" target="_blank" class="block text-sm font-bold text-brand-blue hover:text-brand-blueHover">
+                            ▶ 作成手順とプロンプトを確認する
+                        </a>
+                        <a href="https://okui131213.github.io/datum-interview-guide/" target="_blank" class="block text-sm font-bold text-gray-500 hover:text-gray-800">
+                            ▶ 【参考】別企業Verのサンプル
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: 面接前の申し送り自動生成 -->
+        <section id="section4" class="scroll-mt-20">
+            <div class="border-l-4 border-brand-blue pl-4 mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold text-brand-dark">SECTION 4: 【試験運用中】面接前の申し送りの自動生成化</h2>
+                <p class="text-gray-500 text-sm mt-1">Geminiの「カスタム指示」を活用し、面接対策メモを貼り付けるだけで送信文を完成させる</p>
+            </div>
+
+            <div class="bg-white p-6 sm:p-8 rounded-xl border border-brand-cardBorder shadow-sm print-card">
+                
+                <div class="mb-8">
+                    <h3 class="text-lg font-bold text-brand-dark flex items-center mb-4">
+                        <span class="w-3 h-3 bg-brand-blue rounded-full mr-2"></span>
+                        生成の仕組みと手順
+                    </h3>
+                    <div class="bg-brand-blueLight border border-brand-blue/20 p-4 rounded-lg text-sm text-gray-700">
+                        <ol class="list-decimal list-inside space-y-2 font-medium">
+                            <li>Gemini内のGem<strong>「カスタム指示」</strong>に、下記プロンプトをそのまま挿入して保存します。</li>
+                            <li>対策を実施した際の<strong>「文字起こしメモ」を全選択（Ctrl+A）してコピー</strong>します。</li>
+                            <li>Geminiのトーク画面にメモを貼り付けて実行するだけで、そのままコピペして送信できる申し送りメールが完成します。</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-bold text-brand-dark flex items-center mb-4">
+                    <span class="w-3 h-3 bg-brand-blue rounded-full mr-2"></span>
+                    カスタム指示用プロンプト
+                </h3>
+                <div class="prompt-block">===========================
+# Role
+あなたは企業の採用課題と候補者のキャリアビジョンを深く理解し、両者のマッチングを推進するプロの転職エージェント (type転職エージェントの奥井)です。
+
+# Objective
+提出されたヒアリングメモに基づき、採用担当者へ送付する「面接前の申し送りメール」を作成してください。そのままメールにコピペして送信できるフォーマットで出力することが目的です。
+
+# Instructions
+以下の&lt;thinking_process&gt;で情報を整理した上で、&lt;Output_Format&gt;の構成で出力してください。マークダウン (## や**など)は使用せず、通常のテキストとして作成してください。
+
+&lt;thinking_process&gt;
+1.【選考状況・志望度】他社状況と貴社の志望順位、惹かれているポイントを整理する。
+2.【マッチング要素】候補者の「技術力」「志向性」「お人柄」が、企業のニーズとどう合致するかを言語化する。
+3.【懸念の払拭】経験不足などの懸念点を、学習意欲やポテンシャルでどうカバーできるかロジックを組む。
+4.【面接での依頼事項】候補者が知りたがっていることや、面接官にアトラクトしてほしいポイントを特定する。
+&lt;/thinking_process&gt;
+
+# Output_Format
+[企業名]株式会社
+採用担当者様
+
+お世話になっております。type転職エージェントの奥井です。
+本日は[面接日程]に面接を控える [候補者氏名]様について、
+営業側でも直接面接対策にてご意向をうかがうことができましたので、
+下記について、ご確認いただければ幸いです。
+
+①選考状況について
+&lt;選考状況&gt;
+[A社:○次面接(○月○日) など箇条書き]
+
+②貴社への志望度
+&lt;志望順位&gt;
+·[第一志望/非常に高いなど]
+&lt;魅力&gt;
+・[貴社のどのような点に惹かれているか]
+
+③[候補者氏名]様について
+本日お話したところ、下記のポイントで貴社に非常にマッチすると考えております。
+ぜひ面接でもご確認いただければ幸いです。
+
+·技術力
+⇒[具体的な経験スキルと、それが貴社でどう活きるか]
+・ご志向性
+⇒[キャリアビジョンと、貴社でそれが叶う理由]
+・お人柄
+⇒[コミュニケーション能力やスタンスなど]
+
+[懸念点があれば記載]の経験が不足している点がご懸念に映るかとも存じますが、
+この点は[カバーできる理由・学習意欲など]から、早期にキャッチアップができる方かと存じます。
+ぜひ面接ではそのほかのポテンシャルなどを見ていただければ幸いです。
+
+④面接時にエージェントからご依頼したい内容について
+・[依頼事項1:例) 現場の技術環境について]
+⇒[理由:生の声を聞きたいとのことです等]
+・[依頼事項2]
+⇒[理由]
+
+=======================
+ご依頼ばかりとなり恐れ入りますが、ぜひ上記面接をご担当いただく方にも連携いただき、
+ご確認いただければ幸いです。
+何卒よろしくお願いいたします。
+キャリアデザインセンター 奥井(090-6524-3290)
+
+# Input Data
+{{ヒアリングメモ内容}}
+===========================</div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark text-gray-400 py-10 border-t border-gray-800 text-center text-xs no-print">
+        <div class="max-w-6xl mx-auto px-4">
+            <p class="mb-4 text-sm text-gray-300 font-bold">「実はお気づきかと思いますが、この共有内容の文章自体もAIが作成しています。」</p>
+            <p class="mb-2">株式会社キャリアデザインセンター TJS事業部 TTAグループ 営業統括局 チーフ</p>
+            <p class="mb-4">奥井 陸平 (TEL: 090-6524-3290)</p>
+            <p class="text-gray-600">※その他の活用方法やご要望がありましたら、お気軽にご相談ください。</p>
+        </div>
+    </footer>
+
+</body>
+</html>
